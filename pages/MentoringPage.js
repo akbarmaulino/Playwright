@@ -48,9 +48,22 @@ class MentoringPage {
       "Halo, semoga harimu menyenangkan dan penuh berkahhh"
     );
     await this.nextButtonSchedulingStep2.click();
-    const checkbox = this.page.locator(`input[type="checkbox"]`);
-    await checkbox.scrollIntoViewIfNeeded();
-    await checkbox.check();
+    const checkbox2 = this.page.locator('input[type="checkbox"][value="2"]');
+    const checkbox3 = this.page.locator('input[type="checkbox"][value="3"]');
+
+    if ((await checkbox2.count()) > 0 && (await checkbox3.count()) > 0) {
+      await checkbox2.scrollIntoViewIfNeeded();
+      await checkbox2.check();
+      await checkbox3.scrollIntoViewIfNeeded();
+      await checkbox3.check();
+    } else {
+      const checkbox = this.page.locator('input[type="checkbox"]');
+      if ((await checkbox.count()) > 0) {
+        await checkbox.scrollIntoViewIfNeeded();
+        await checkbox.check();
+      }
+    }
+
     // await this.nextButtonSchedulingStep3.click();
   }
 
