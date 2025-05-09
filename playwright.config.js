@@ -4,7 +4,7 @@ module.exports = {
   use: {
     baseURL: "https://job-portal-user-dev-skx7zw44dq-et.a.run.app",
     browserName: "chromium",
-    headless: false,
+    headless: true,
     viewport: null,
     launchOptions: {
       args: ["--start-maximized"],
