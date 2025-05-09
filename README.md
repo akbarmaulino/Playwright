@@ -1,69 +1,79 @@
-# Playwright Automation Tesing Dealls
+# Playwright Automation Testing - Dealls
 
-Proyek ini merupakan pengujian automation testing menggunakan Playwright untuk website Dealls. Beberapa Fitur yang diuji dalam project ini adalah :
+![CI](https://github.com/akbarmaulino/Playwright/actions/workflows/main.yml/badge.svg)
 
-- Login with valid credential
-- Search Mentor
-- View Detail Mentail
-- Create new schedule for mentoring
+This project is an automation test suite using [Playwright](https://playwright.dev/) for the [Dealls](https://dealls.com) website.  
+It covers essential user journeys such as:
 
+- Login with valid credentials  
+- Search for a mentor  
+- View mentor detail  
+- Create a new mentoring schedule  
 
-## 📁 Struktur Proyek
+---
 
-```
+## 📁 Project Structure
+
 .
-├── .github/workflows/         # GitHub Actions
-├── node_modules/              # Modul Node.js
-├── pages/                     # POM
-├── playwright-report/         # Report Eksekusi
-├── steps/                     # Langkah-langkah pengujian 
-├── test-results/              # Output hasil test
-├── tests/                     # skenario pengujian
-├── utils/                     # Utility/helper functions
-├── README.md                  # Dokumentasi proyek
-├── package.json               # Dependensi dan script project
-├── package-lock.json          # Lockfile npm
-├── playwright.config.js       # Konfigurasi utama Playwright
+├── .github/workflows/ # GitHub Actions for CI
+├── node_modules/ # Node.js dependencies
+├── pages/ # Page Object Models
+├── playwright-report/ # Playwright HTML test report
+├── steps/ # Step definitions for tests
+├── test-results/ # Test output results
+├── tests/ # Test scenarios
+├── utils/ # Utility/helper functions
+├── README.md # Project documentation
+├── package.json # Project metadata and scripts
+├── package-lock.json # Exact dependency versions
+├── playwright.config.js # Playwright configuration
+
+
+
+---
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/akbarmaulino/Playwright.git
+cd Playwright
 ```
 
+### 2. Install dependencies
 
-## 🚀 Instalasi
+```bash
+npm install
+```
 
-1. **Kloning repositori:**
+### 3. Install Playwright Browser
 
-   ```bash
-   git clone https://github.com/akbarmaulino/Playwright.git
-   cd Playwright
-   ```
+```bash
+npx playwright install
+```
+## Running Tests
 
-2. **Instal dependensi:**
-
-   ```bash
-   npm install
-   ```
-
-3. **Instal browser Playwright:**
-
-   ```bash
-   npx playwright install
-   ```
-
-## 🧪 Menjalankan Tes
-
-### Secara Lokal
+## Runing  All Tests
 
 ```bash
 npx playwright test
 ```
 
-### Menjalankan Tes Tertentu
+## Runing Specific test File
 
 ```bash
 npx playwright test tests/mentoring.spec.js
 ```
 
-### Melihat Laporan Tes
+## View Report
 
 ```bash
 npx playwright show-report
 ```
+
+
+
+
+
+
