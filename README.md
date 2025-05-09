@@ -1,7 +1,5 @@
 # Playwright Automation Testing - Dealls
 
-![CI](https://github.com/akbarmaulino/Playwright/actions/workflows/main.yml/badge.svg)
-
 This project is an automation test suite using [Playwright](https://playwright.dev/) for the [Dealls](https://dealls.com) website.  
 It covers essential user journeys such as:
 
