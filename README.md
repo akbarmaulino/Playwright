@@ -10,24 +10,23 @@ It covers essential user journeys such as:
 
 ---
 
-## 📁 Project Structure
+## 📁 Struktur Proyek
 
+```
 .
-├── .github/workflows/ # GitHub Actions for CI
-├── node_modules/ # Node.js dependencies
-├── pages/ # Page Object Models
-├── playwright-report/ # Playwright HTML test report
-├── steps/ # Step definitions for tests
-├── test-results/ # Test output results
-├── tests/ # Test scenarios
-├── utils/ # Utility/helper functions
-├── README.md # Project documentation
-├── package.json # Project metadata and scripts
-├── package-lock.json # Exact dependency versions
-├── playwright.config.js # Playwright configuration
-
-
-
+├── .github/workflows/         # Konfigurasi GitHub Actions
+├── node_modules/              # Modul-modul Node.js
+├── pages/                     # File objek halaman (Page Object Model)
+├── playwright-report/         # Laporan hasil eksekusi Playwright
+├── steps/                     # Langkah-langkah pengujian (step definitions)
+├── test-results/              # Output hasil test mentah
+├── tests/                     # File skenario pengujian
+├── utils/                     # Utility/helper functions
+├── README.md                  # Dokumentasi proyek
+├── package.json               # Dependensi dan script project
+├── package-lock.json          # Lockfile npm
+├── playwright.config.js       # Konfigurasi utama Playwright
+```
 ---
 
 ## Getting Started
