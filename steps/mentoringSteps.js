@@ -1,6 +1,7 @@
 const LoginPage = require("../pages/LoginPage");
 const MentoringPage = require("../pages/MentoringPage");
 const UtilsMentor = require("../utils/MentorFunction");
+import { test } from "@playwright/test";
 
 async function SearchMentorName(page, mentorName) {
   const mentoringPage = new MentoringPage(page);
@@ -35,9 +36,13 @@ async function CreateSchedule(
   const loginPage = new LoginPage(page);
   await loginPage.gotourl();
   await loginPage.login(email, password);
-  await page.click(
-    "//div[contains(@class, 'LinkItem_navbar_link_item__Toizn')]//a[normalize-space(text()) = 'Mentoring']"
-  );
+  await page.waitForTimeout(5000);
+  // await page.click(
+  //   "//div[contains(@class, 'LinkItem_navbar_link_item__Toizn')]//a[normalize-space(text()) = 'Mentoring']"
+  // );
+
+  await page.getByRole("link", { name: "Mentoring" }).click();
+
   await page.waitForTimeout(5000);
   await mentoringPage.searchMentor(mentorName);
   await UtilsMentor.clickMentor(page, index);
