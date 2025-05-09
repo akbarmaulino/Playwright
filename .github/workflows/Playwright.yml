@@ -11,24 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Node.js
+  
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "20"
-
+          node-version: '16'  # atau versi Node.js yang sesuai
+    
       - name: Install dependencies
-        run: npm install
-
+        run: |
+          npm ci  # atau npm install jika Anda belum menggunakan package-lock.json
+          
+      - name: Install Playwright
+        run: npx playwright install
+    
       - name: Run Playwright tests
         run: npx playwright test
-
-      - name: Upload Playwright report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report
 
