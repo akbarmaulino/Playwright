@@ -2,8 +2,7 @@ import { expect } from "@playwright/test";
 
 export async function verifySuccessLogin(page) {
   const titleLocator = page.locator("//h1[contains(@class, 'text-center')]");
-
-  // Tunggu sampai elemen tampil dan memiliki teks yang sesuai
+  
   await expect(titleLocator).toBeVisible({ timeout: 13000 });
   await expect(titleLocator).toHaveText(
     "Cari Lowongan Kerja Pakai Dealls #LebihPasti",
@@ -12,5 +11,9 @@ export async function verifySuccessLogin(page) {
     }
   );
 
+  const header = await titleLocator.textContent();
+
+
   console.log("Login Berhasil");
+  console.log("Berhasil Masuk Ke Halaman Utama : " + header )
 }

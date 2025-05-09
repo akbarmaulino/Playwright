@@ -1,21 +1,21 @@
 import { expect } from "@playwright/test";
-//Function Click Mentor
-export async function klikMentor(page, indexProduk) {
-  const xpath = `(//div[contains(@class, 'grid') and contains(@class, 'grid-cols-1')]/a)[${indexProduk}]`;
+
+export async function clickMentor(page, index) {
+  const xpath = `(//div[contains(@class, 'grid') and contains(@class, 'grid-cols-1')]/a)[${index}]`;
   const mentorElement = page.locator(`xpath=${xpath}`);
 
-  // Tunggu sampai elemen muncul dan bisa diklik
-  await expect(mentorElement).toBeVisible({ timeout: 10000 }); // maksimal 10 detik
+
+  await expect(mentorElement).toBeVisible({ timeout: 10000 }); 
   await expect(mentorElement).toBeEnabled();
 
-  // Klik setelah elemen siap
+
   await mentorElement.click();
 }
 
-//Function verify View Detail Mentor
+
 export async function verifyViewDetailMentor(page) {
   const button = page.getByRole("button", { name: "Ajukan Jadwal" });
-  await expect(button).toBeVisible({ timeout: 13000 }); // maksimal 10 detik
+  await expect(button).toBeVisible({ timeout: 13000 }); 
   await expect(button).toBeEnabled();
   if (await button.isVisible()) {
     console.log("Tombol muncul!");
@@ -24,7 +24,7 @@ export async function verifyViewDetailMentor(page) {
   }
 }
 
-//Function Verify Name Mentor
+
 export async function verifyNameMentor(page, indexProduk, Mentor) {
   const xpath = `(//div[contains(@class, 'grid') and contains(@class, 'grid-cols-1')]/a)[${indexProduk}]//div[2]//div[1]//h4`;
   const nameMentor = await page.locator(xpath).textContent();
@@ -36,8 +36,8 @@ export async function verifyNameMentor(page, indexProduk, Mentor) {
   }
 }
 
-//Function Verify Search Mentor
 export async function verifySearchMentor(page, Mentor) {
+  await page.waitForTimeout(5000);
   const totalResults = await page
     .locator(
       "//div[contains(@class, 'grid') and contains(@class, 'grid-cols-1')]/a"

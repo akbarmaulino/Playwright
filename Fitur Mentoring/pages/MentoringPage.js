@@ -1,24 +1,34 @@
-const { expect } = require("@playwright/test");
+import { expect } from "@playwright/test";
 const Utils = require("../utils/MentorFunction");
+
+
 class MentoringPage {
   constructor(page) {
     this.page = page;
     this.searchMentorField = page.locator('input[id="searchMentor"]');
+    this.textAreaField = page.locator('textarea[id="notes"]');
     this.buttonScheduling = page.getByRole("button", { name: "Ajukan Jadwal" });
     this.goalSetting = page.getByRole("button", { name: "Goal Setting" });
     this.lpdp = page.getByRole("button", { name: "LPDP" });
     this.calender = page.getByRole("button", { name: "Select Date Range" });
-    this.nextButtonScheduling = page.locator(
+    this.nextButtonSchedulingStep1 = page.locator(
       'button[id="mentoring-schedule-topic-request-session-btn"]'
     );
+    this.nextButtonSchedulingStep2 = page.locator(
+      'button[id="mentoring-schedule-pick-schedule-request-session-btn"]'
+    );
+    this.nextButtonSchedulingStep3 = page.locator(
+      'button[id="mentoring-schedule-finish-request-session-btn"]'
+    );
+    this.startTime = page.locator('input[id="proposedTimes_0_startTime"]');
+    this.endTime = page.locator('input[id="proposedTimes_0_endTime"]');
+    this.mySessionPage = page.locator('a[href="/mentoring/my-session"]');
+    this.gridSession = page.locator("//div[contains(@class, 'relative overflow-hidden')]");
+    
   }
 
   async goto() {
     await this.page.goto("/mentoring");
-  }
-
-  async goto1() {
-    await this.page.goto("/mentoring/bi-598");
   }
 
   async searchMentor(name) {
@@ -26,13 +36,29 @@ class MentoringPage {
     await this.searchMentorField.press("Enter");
   }
 
-  async scheduling() {
+  async scheduling(index2, startDate, endDate, timeStart, timeFinish) {
     await this.buttonScheduling.click();
     await this.lpdp.click();
-    await this.nextButtonScheduling.click();
+    await this.nextButtonSchedulingStep1.click();
     await this.calender.click();
-    await Utils.pilihRentangTanggal(this.page, "15", "18");
+    await Utils.pilihRentangTanggal(this.page, startDate, endDate);
+    await this.startTime.fill(timeStart);
+    await this.endTime.fill(timeFinish);
+    await this.textAreaField.fill("Halo, semoga harimu menyenangkan dan penuh berkahhh")
+    await this.nextButtonSchedulingStep2.click();
+    const checkbox = this.page.locator(`input[type="checkbox"]`);
+    await checkbox.scrollIntoViewIfNeeded();
+    await checkbox.check();
+    await this.nextButtonSchedulingStep3.click();
   }
+
+
+async checkScheduling() {
+  await this.mySessionPage.waitFor({ state: 'visible' }); 
+  await this.mySessionPage.click(); 
+  await expect(this.gridSession).toBeVisible({ timeout: 5000 });
+}
+
 }
 
 module.exports = MentoringPage;

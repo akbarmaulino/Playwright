@@ -1,36 +1,33 @@
-const { test, expect } = require("@playwright/test");
-const Utils = require("../utils/MentorFunction");
-const MentoringPage = require("../pages/MentoringPage");
+const { test } = require("@playwright/test");
+const pages = require("../steps/mentoringSteps");
 const LoginPage = require("../pages/LoginPage");
+
 const mentorName = "Cika";
+const index = 1;
+const index2 = 2;
+const email = "mentee2@gmail.com";
+const password = "P@ssw0rd";
+const startDate = "15";
+const endDate = "18"; 
+const timeStart = "2000";
+const timeFinish = "2100";
 
 test.describe("Mentoring Feature", () => {
+
   test("Search Mentor Name", async ({ page }) => {
-    const mentoringPage = new MentoringPage(page);
-    await mentoringPage.goto();
-    await mentoringPage.searchMentor(mentorName);
-    await Utils.verifySearchMentor(page, mentorName);
+    await pages.SearchMentorName(page, mentorName); 
   });
 
+
+
   test("View Detail Mentor", async ({ page }) => {
-    const mentoringPage = new MentoringPage(page);
-    await mentoringPage.goto();
-    await mentoringPage.searchMentor(mentorName);
-    await Utils.klikMentor(page, 1);
-    await Utils.verifyViewDetailMentor(page);
+    await pages.ViewDetailMentor(page, mentorName, index);
   });
 
   test("Scheduling", async ({ page }) => {
-    const mentoringPage = new MentoringPage(page);
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-    await loginPage.login("mentee2@gmail.com", "P@ssw0rd");
-    await page.click(
-      "//div[contains(@class, 'LinkItem_navbar_link_item__Toizn')]//a[normalize-space(text()) = 'Mentoring']"
-    );
-    await mentoringPage.searchMentor(mentorName);
-    await Utils.klikMentor(page, 1);
-    await Utils.verifyViewDetailMentor(page);
-    await mentoringPage.scheduling();
+    await pages.CreateSchedule(page, mentorName, email, password, index,index2, startDate, endDate, timeStart, timeFinish);
+    await pages.verifyScheduling(page);
   });
+
+
 });

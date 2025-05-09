@@ -6,7 +6,7 @@ class LoginPage {
     this.loginButton = page.locator('button[type="submit"]');
   }
 
-  async goto() {
+  async gotourl() {
     await this.page.goto("/sign-in?returnUrl=%2F");
   }
 
