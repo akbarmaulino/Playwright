@@ -9,30 +9,22 @@ on:
       - main # Atau branch yang kamu inginkan
 
 jobs:
-  playwright-tests:
-    runs-on: ubuntu-latest # Menjalankan di runner Ubuntu
-
+  test:
+    runs-on: ubuntu-latest
     steps:
-      # Checkout kode dari repository
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      # Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
- 
+
       - name: Install dependencies
-        run: |
-          npm install
-
-
-      - name: Install Playwright browsers
-        run: |
-          npx playwright install
-
+        run: npm install
+        working-directory: Playwright  # <- sesuaikan jika project kamu ada di dalam folder ini
 
       - name: Run Playwright tests
-        run: |
-          npx playwright test tests/login.spec.js  # Sesuaikan dengan jalur tes kamu
+        run: npx playwright test
+        working-directory: Playwright  # <- sesuaikan juga
+
