@@ -9,8 +9,8 @@ module.exports = {
     launchOptions: {
       args: ["--start-maximized"],
     },
-    screenshot: 'on', 
-    video: 'retain-on-failure',   
+    screenshot: "on",
+    video: "retain-on-failure",
   },
   testDir: "./tests",
   retries: 1,

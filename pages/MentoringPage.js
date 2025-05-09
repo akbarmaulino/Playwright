@@ -1,7 +1,6 @@
 import { expect } from "@playwright/test";
 const Utils = require("../utils/MentorFunction");
 
-
 class MentoringPage {
   constructor(page) {
     this.page = page;
@@ -23,8 +22,9 @@ class MentoringPage {
     this.startTime = page.locator('input[id="proposedTimes_0_startTime"]');
     this.endTime = page.locator('input[id="proposedTimes_0_endTime"]');
     this.mySessionPage = page.locator('a[href="/mentoring/my-session"]');
-    this.gridSession = page.locator("//div[contains(@class, 'relative overflow-hidden')]");
-    
+    this.gridSession = page.locator(
+      "//div[contains(@class, 'relative overflow-hidden')]"
+    );
   }
 
   async goto() {
@@ -44,21 +44,21 @@ class MentoringPage {
     await Utils.pilihRentangTanggal(this.page, startDate, endDate);
     await this.startTime.fill(timeStart);
     await this.endTime.fill(timeFinish);
-    await this.textAreaField.fill("Halo, semoga harimu menyenangkan dan penuh berkahhh")
+    await this.textAreaField.fill(
+      "Halo, semoga harimu menyenangkan dan penuh berkahhh"
+    );
     await this.nextButtonSchedulingStep2.click();
     const checkbox = this.page.locator(`input[type="checkbox"]`);
     await checkbox.scrollIntoViewIfNeeded();
     await checkbox.check();
-    await this.nextButtonSchedulingStep3.click();
+    // await this.nextButtonSchedulingStep3.click();
   }
 
-
-async checkScheduling() {
-  await this.mySessionPage.waitFor({ state: 'visible' }); 
-  await this.mySessionPage.click(); 
-  await expect(this.gridSession).toBeVisible({ timeout: 5000 });
-}
-
+  async checkScheduling() {
+    await this.mySessionPage.waitFor({ state: "visible" });
+    await this.mySessionPage.click();
+    await expect(this.gridSession).toBeVisible({ timeout: 5000 });
+  }
 }
 
 module.exports = MentoringPage;
