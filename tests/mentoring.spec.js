@@ -2,9 +2,9 @@ const { test } = require("@playwright/test");
 const pages = require("../steps/mentoringSteps");
 
 const mentorName = "Cika";
-const index = 2;
+const index = 1;
 const index2 = 2;
-const email = "mentee2@gmail.com";
+const email = "mentee3@gmail.com";
 const password = "P@ssw0rd";
 const startDate = "15";
 const endDate = "18";
